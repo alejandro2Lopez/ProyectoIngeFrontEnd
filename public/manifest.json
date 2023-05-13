@@ -6,9 +6,19 @@
   "display_override": ["standalone","fullscreen"],
   "display": "standalone",
 
-  "icons":[{
+  
+    "icons": [
+      {
+        "src": "192",
+        "sizes": "192x192",
+        "type": "image/webp"
+      },
+      {
+        "src": "512",
+        "sizes": "512x512"
+      }
 
-  }],
+  ],
 "lang": "es-MX",
 "name": "Andrés babershop",
 "orientation":"any",
