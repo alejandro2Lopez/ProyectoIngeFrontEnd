@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { Route, Navigate, Routes } from "react-router-dom";
-import { Dates } from "../Pages/Dates";
+import { Date } from "../Pages/Dates";
 import { Navbar } from "../components/Navbar";
 import { ManageUser } from "../Pages/ManageUser";
 import { ProtectedRoute } from "../components/ProtectedRouter";
@@ -25,7 +25,7 @@ const UserRoutes = () => {
 
       {/* Rutas permitidas para ambos roles*/}
       <Route element={<ProtectedRoute isAllowed={!!log.log && (log.role === "Normal" || log.role === "Admin")} />}>
-        <Route path="/Citas" element={<Dates />} />
+        <Route path="/Citas" element={<Date />} />
         <Route path="*" element={<Navigate to="/Citas" />} />
 
       </ Route>

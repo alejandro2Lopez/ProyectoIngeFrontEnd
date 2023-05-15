@@ -1,11 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState , useEffect} from "react";
+import { fetchMethods} from "../components/FetchMethods";
 
-import { AuthContext } from "../context/AuthContext";
-const ManageUser = () => {
-    const { log } = useContext(AuthContext);
-    const lae = log.role
+export const ManageUser = () => {
+
+
+    const [value, setValue] = useState('')
+    const [refresh, setRefresh] = useState(true)
+    useEffect(() => {
+        if (refresh) {
+
+            fetchMethods.getFetch("users").then(val => setValue(val.data[0].nombreUsuario));
+
+            setRefresh(false);
+        }
+    }, [setValue, refresh])
+
+
     return (<h1>
-        Entregados a {lae}
+        Entregados a {value}
     </h1>)
 }
-export default ManageUser;
