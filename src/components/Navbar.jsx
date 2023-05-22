@@ -64,7 +64,7 @@ export const Navbar = () => {
                             </ul>
                         </li>
                     ) : (
-                        <li className="nav-item dropdown" style={{ visibility: 'visible' }}>
+                        <li className="nav-item dropdown" style={{ visibility: 'hidden' }}>
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Configuraciones avanzadas
                             </a>

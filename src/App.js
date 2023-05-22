@@ -10,15 +10,14 @@ const init = () => {
 };
 
 const App = () => {
-  const [log, dispatch, role] = useReducer(AuthReducer, {}, init);
+  const [log, dispatch] = useReducer(AuthReducer, {}, init);
 
   useEffect(() => {
     localStorage.setItem("log", JSON.stringify(log));
-    localStorage.setItem("role", JSON.stringify(role))
-  }, [log, role]);
+  }, [log]);
 
   return (
-    <AuthContext.Provider value={{ log, dispatch, role: "Alejo"}}>
+    <AuthContext.Provider value={{ log, dispatch }}>
       <AdminRouter />
     </AuthContext.Provider>
   );
