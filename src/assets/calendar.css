@@ -1,0 +1,27 @@
+.custom-input {
+    border-radius: 5px;
+    border: 1px #4f575f solid;
+    padding: 10px 2px;
+    background-color: white;
+    height: 26px;
+    box-shadow: 0 0 2px #6e7780;
+    width: "100%";
+
+  }
+  .custom-input:focus {
+    outline: none;
+    border: 1px solid #171818;
+    box-shadow: 0 0 10px 2px #333639;
+  }  
+  .custom-calendar.rmdp-wrapper,
+.rmdp-container .custom-calendar.ep-arrow::after {
+  background-color: rgb(35, 34, 34);
+}
+
+.rmdp-container .custom-calendar.ep-arrow[direction="bottom"] {
+  border-top: 1px solid bisque;
+}
+
+.rmdp-container .custom-calendar.ep-arrow[direction="top"] {
+  border-bottom: 1px solid bisque;
+}
