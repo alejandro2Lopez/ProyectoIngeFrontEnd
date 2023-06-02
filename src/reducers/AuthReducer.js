@@ -9,7 +9,8 @@ export const AuthReducer = (state = {}, action) => {
         role: action.role,
         userName: action.userName,
         gmail: action.gmail,
-        numberPhone: action.numberPhone
+        numberPhone: action.numberPhone,
+        idperson: action.idperson
       };
 
     case authTypes.logout:

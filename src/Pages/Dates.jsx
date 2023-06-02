@@ -1,67 +1,131 @@
+
 import React, { useContext, useEffect, useState } from "react";
 import DatePicker from "@hassanmojab/react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import "../assets/calendar.css"
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
-export const Date = () => {
+
+import { fetchMethods } from "../components/FetchMethods";
+export const Dates = () => {
     const { log } = useContext(AuthContext);
+    const [appStateLoading, setAppStateLoading] = useState(false);
+    const [appStateObject, setAppStateObject] = useState([]);
     const [selectedDay, setSelectedDay] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState(false);
+    const [refresh, setRefresh] = useState(true);
+    const [barber, setBarber] = useState(1);
+    const [hairCutT, setHairCut] = useState(1);
+    const [fulldate, setFullDate] = useState("2023-05-30");
+
+    const fecha = new Date
+    useEffect(() => {
+        if (refresh) {
 
 
-    const formatInputValue = () => {
-        if (!selectedDay && !selectedMonth) return '';
-        return `Mes: ${selectedDay.month}` + `  Day: ${selectedDay.day}`;
+
+            setAppStateLoading(true);
+
+
+            fetchMethods.getFetch(`citas/${barber},${hairCutT},${fulldate}`).then((res) => {
+                setAppStateObject(res.data)
+            });
+
+            setRefresh(false);
+
+        } console.log('entre1');
+
+
+
+    }, [setAppStateObject, refresh, setFullDate, fulldate, hairCutT, setHairCut, barber, setBarber])
+    const sendDataB = async (e) => {
+
+
+        console.log(fecha.getFullYear());
+        console.log(fecha.getUTCDay());
+        console.log(fecha.getMonth())
+        setBarber(e.target.value);
+
+
+        setRefresh(true);
+        console.log(`Acá al entre ${refresh}`);
+
+    }
+    const setearvalor = async (e) => {
+        await setHairCut(e.target.value)
+    }
+    const sendDataT = (e) => {
+        setearvalor(e);
+        setRefresh(true);
+
+
+    }
+    const year = parseInt(fecha.getFullYear());
+    const month = parseInt(fecha.getMonth() + 1);
+    const day = parseInt(fecha.getDate());
+    const minimumDate = {
+
+        year: year,
+        month: month,
+        day: day
     };
-    const numbers = ['7:30', '8:00', '9:30', '11:30', '10:00'];
-    let num = 0;
-    const listItems = numbers.map((number) =>
+    const formatInputValue = () => {
+        if (`${selectedDay.year}-0${selectedDay.month}-${selectedDay.day}` !== fulldate) {
+            if (!selectedDay && !selectedMonth) return `Mes: ${month} Day: ${day}`;
+            setRefresh(true);
+            console.log(fulldate);
+            setFullDate(`${selectedDay.year}-0${selectedDay.month}-${selectedDay.day}`);
+            return `Mes: ${selectedDay.month}` + `  Day: ${selectedDay.day}`;
+        }
+    };
+    var num = 0;
+    const listItems = appStateObject.map((number) =>
 
-        <div class="container">
-            <div class="row">
-                <div class="row gy-1">
-                    {(() => {
-                        if (num === 0) {
-                            num++;
-                            return (<div class="col col-lg-2">
-                                <div class="d-grid gap-2 ">
-                                    <button class="btn btn-dark btn-lg" type="button">{number}</button>
-                                </div>
-                            </div>)
-                        } else if (num === 1) {
-                            num++;
-                            return (<div class="col col-lg-2">
-                                <div class="d-grid gap-2 ">
-                                    <button class="btn btn-dark btn-lg" type="button">{number}</button>
-                                </div>
-                            </div>)
-                        } else {
-                            num = 0;
-                            return (<div class="col col-lg-2">
-                                <div class="d-grid gap-2">
-                                    <button class="btn btn-dark btn-lg" type="button">{number}</button>
-                                </div>
-                            </div>)
+        <>
+            {(() => {
+                if (number.HoraCita !== "Ocupado") {
+                    if (num === 0) {
+                        num++;
+                        return (<div className="col-md-auto">
+                            <div className="d-grid gap-2 ">
+                                <button className="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" onClick={() => console.log(number.HoraCita)}>{number.HoraCita}</button>
+                            </div>
+                        </div>)
+                    } else if (num === 1) {
+                        num++;
+                        return (<div className="col-md-auto">
+                            <div className="d-grid gap-2 ">
+                                <button class="btn btn-dark btn-lg" type="button">{number.HoraCita}</button>
+                            </div>
+                        </div>)
+                    } else {
+                        num = 0;
+                        return (<div className="col-md-auto">
+                            <div className="d-grid gap-2">
+                                <button className="btn btn-dark btn-lg" type="button">{number.HoraCita}</button>
+                            </div>
+                        </div>)
 
-                        }
-                    })()}
-                </div>
-            </div>
-        </div>
+                    }
+                }
+            })()}
+
+        </>
+
 
     );
     return (<>
         <div className="d-flex justify-content-center align-items-center">
-            <div class="dropdown">
-                <a class="btn btn-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Barbero
-                </a>
 
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Andrés R</a></li>
-                    <li><a class="dropdown-item" href="#">Michael</a></li>
-                </ul>
+            <div className="dropdown  col-xs-*">
+                <select className="form-select" aria-label="Default select example" onChange={(e) => { sendDataB(e) }}>
+                    <option value={1}>Barbero</option>
+                    <option value={1}>Andrés R</option>
+                    <option value={2}>Michael</option>
+
+                </select>
+
+
             </div>
             <DatePicker
 
@@ -71,53 +135,67 @@ export const Date = () => {
                 formatInputText={formatInputValue} // format value
                 inputClassName="custom-input" // custom class
                 shouldHighlightWeekends
+                minimumDate={minimumDate}
             />
 
 
-            <div class="dropdown">
-                <a class="btn btn-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Tipo de corte
-                </a>
-
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Barba</a></li>
-                    <li><a class="dropdown-item" href="#">Cabello</a></li>
-                    <li><a class="dropdown-item" href="#">Ambas</a></li>
-                </ul>
-
+            <div className="dropdown  col-xs-*">
+                <select className="form-select" aria-label="Default select example" onChange={(e) => { sendDataT(e) }}>
+                    <option value={1}>Tipo Corte</option>
+                    <option value={1}>Barba</option>
+                    <option value={2}>Cabello</option>
+                    <option value={3}>Ambas</option>
+                </select>
             </div>
 
 
         </div>
         <div>
-            {
-                <div>{listItems}</div>
-            }
+            <hr />
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="row gy-1"> {listItems}</div>
+                    <div
+                        className="modal fade"
+                        id="exampleModal"
+                        tabIndex={-1}
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                    >
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">
+                                        Título del modal
+                                    </h5>
+                                    <button
+                                        type="button"
+                                        className="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    />
+                                </div>
+                                <div className="modal-body">...</div>
+                                <div className="modal-footer">
+                                    <button
+                                        type="button"
+                                        className="btn btn-secondary"
+                                        data-bs-dismiss="modal"
+                                    >
+                                        Cerrar
+                                    </button>
+                                    <button type="button" className="btn btn-primary">
+                                        Guardar cambios
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col col-lg-2">
-      1 of 3
-    </div>
-    <div class="col-md-auto">
-      Variable width content
-    </div>
-    <div class="col col-lg-2">
-      3 of 3
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      1 of 3
-    </div>
-    <div class="col-md-auto">
-      Variable width content
-    </div>
-    <div class="col col-lg-2">
-      3 of 3
-    </div>
-  </div>
-</div>
+
     </>
     );
 }
