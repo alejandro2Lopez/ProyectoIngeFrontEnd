@@ -17,7 +17,8 @@ export const Dates = () => {
     const [barber, setBarber] = useState(1);
     const [hairCutT, setHairCut] = useState(1);
     const [fulldate, setFullDate] = useState("2023-05-30");
-
+    const [hour, setHour] = useState("");
+    const [idHour, setIdHour] = useState(0);
     const fecha = new Date
     useEffect(() => {
         if (refresh) {
@@ -52,13 +53,24 @@ export const Dates = () => {
 
     }
     const setearvalor = async (e) => {
-        await setHairCut(e.target.value)
+        await setHairCut(e.target.value);
     }
+
     const sendDataT = (e) => {
         setearvalor(e);
         setRefresh(true);
 
 
+    }
+    const getDateTime = (idtime, hour) => {
+        setIdHour(idtime);
+        setHour(hour);
+    }
+    const confirmDate = () => {
+        fetchMethods.postFecth("citas/", { barber: barber, client: log.idperson, hourid: idHour, date: fulldate, hairCut: hairCutT, hour: hour }).then((res) => {
+            setRefresh(true);
+            console.log("Creada")
+        });
     }
     const year = parseInt(fecha.getFullYear());
     const month = parseInt(fecha.getMonth() + 1);
@@ -88,21 +100,21 @@ export const Dates = () => {
                         num++;
                         return (<div className="col-md-auto">
                             <div className="d-grid gap-2 ">
-                                <button className="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" onClick={() => console.log(number.HoraCita)}>{number.HoraCita}</button>
+                                <button className="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" onClick={() => getDateTime(number.idHoraCita, number.HoraCita)}>{number.HoraCita}</button>
                             </div>
                         </div>)
                     } else if (num === 1) {
                         num++;
                         return (<div className="col-md-auto">
                             <div className="d-grid gap-2 ">
-                                <button class="btn btn-dark btn-lg" type="button">{number.HoraCita}</button>
+                                <button class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" onClick={() => getDateTime(number.idHoraCita, number.HoraCita)}>{number.HoraCita}</button>
                             </div>
                         </div>)
                     } else {
                         num = 0;
                         return (<div className="col-md-auto">
                             <div className="d-grid gap-2">
-                                <button className="btn btn-dark btn-lg" type="button">{number.HoraCita}</button>
+                                <button className="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" onClick={() => getDateTime(number.idHoraCita, number.HoraCita)}>{number.HoraCita}</button>
                             </div>
                         </div>)
 
@@ -167,7 +179,7 @@ export const Dates = () => {
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <h5 className="modal-title" id="exampleModalLabel">
-                                        Título del modal
+                                        Confirmar Cita
                                     </h5>
                                     <button
                                         type="button"
@@ -176,7 +188,7 @@ export const Dates = () => {
                                         aria-label="Close"
                                     />
                                 </div>
-                                <div className="modal-body">...</div>
+                                <div className="modal-body">Desea confirmar la cita en la fecha: {fulldate} a las: {hour} </div>
                                 <div className="modal-footer">
                                     <button
                                         type="button"
@@ -185,8 +197,8 @@ export const Dates = () => {
                                     >
                                         Cerrar
                                     </button>
-                                    <button type="button" className="btn btn-primary">
-                                        Guardar cambios
+                                    <button type="button" data-bs-dismiss="modal" onClick={confirmDate} className="btn btn-primary">
+                                        Aceptar
                                     </button>
                                 </div>
                             </div>

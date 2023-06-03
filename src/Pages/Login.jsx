@@ -15,7 +15,7 @@ export const Login = () => {
     const { dispatch } = useContext(AuthContext)
     const navigate = useNavigate();
 
-const [notify, setNotify] = useState("");
+
     {/*Variables para loggearse*/ }
     const [user, setUser] = useState("");
     const [pass, setPass] = useState("");
@@ -40,7 +40,7 @@ const [notify, setNotify] = useState("");
                 navigate("/AddNewDoc");
             } else {
                 alert('usuario o contraseña incorrecta')
-            
+
 
 
             }
@@ -48,17 +48,17 @@ const [notify, setNotify] = useState("");
     };
 
     const handleSignup = () => {
-        if(userName.trim()!==""&&email.trim()!==""&&numberphone.trim()!==""&&password.trim()!==""&&confirmPass.trim()!==""){
-        fetchMethods.postFecth("users/signup", { username: userName, gmail: email, password: password, confirmPassword: confirmPass, numberphone: numberphone }).then((res) => {
-            if (res.message === 'Registrado') {
-                dispatch({ type: authTypes.login, role: "Normal", userName: userName, gmail: email, numberPhone: numberphone });
-                navigate("/AddNewDoc");
+        if (userName.trim() !== "" && email.trim() !== "" && numberphone.trim() !== "" && password.trim() !== "" && confirmPass.trim() !== "") {
+            fetchMethods.postFecth("users/signup", { username: userName, gmail: email, password: password, confirmPassword: confirmPass, numberphone: numberphone }).then((res) => {
+                if (res.message === 'Registrado') {
+                    dispatch({ type: authTypes.login, role: "Normal", userName: userName, gmail: email, numberPhone: numberphone });
+                    navigate("/AddNewDoc");
 
-            } else {
-                alert(res)
-            }
-        })
-    }
+                } else {
+                    alert(res)
+                }
+            })
+        }
     };
 
 
@@ -75,7 +75,7 @@ const [notify, setNotify] = useState("");
                     <div className="signup">
                         <div>
                             <label htmlFor="chk" aria-hidden="true">Ingresar</label>
-                           
+
                             <input type="email" name="email" placeholder="Email" value={user} onChange={(e) => setUser(e.target.value)} required />
                             <input type="password" name="pswd" placeholder="contraseña" value={pass} onChange={(e) => setPass(e.target.value)} required />
 
@@ -110,7 +110,7 @@ const [notify, setNotify] = useState("");
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                     
+
                     </div>
                 </div>
             </div>
