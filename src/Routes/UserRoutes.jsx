@@ -10,6 +10,7 @@ import { ProtectedRoute } from "../components/ProtectedRouter";
 
 
 import { AuthContext } from "../context/AuthContext";
+import { UserDate } from "../Pages/UserDates";
 const UserRoutes = () => {
   const { log } = useContext(AuthContext);
   return (<>
@@ -26,6 +27,7 @@ const UserRoutes = () => {
       {/* Rutas permitidas para ambos roles*/}
       <Route element={<ProtectedRoute isAllowed={!!log.log && (log.role === "Normal" || log.role === "Admin")} />}>
         <Route path="/Citas" element={<Dates />} />
+        <Route path="/CitasAgendadas" element={<UserDate/>} />
         <Route path="*" element={<Navigate to="/Citas" />} />
 
       </ Route>

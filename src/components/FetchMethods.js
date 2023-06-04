@@ -14,7 +14,14 @@ const postFecth = async (path, body) => {
 
     return await response.json();
 }
+const deleteFetch = async (path) => {
+    let response = await fetch(`${process.env.REACT_APP_API_URL}/${path}`, {
+        method: 'DELETE'
+    });
+    return await response.json();
+}
 module.exports.fetchMethods = {
     getFetch,
     postFecth,
+    deleteFetch
 }

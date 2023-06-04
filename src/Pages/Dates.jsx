@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { fetchMethods } from "../components/FetchMethods";
 export const Dates = () => {
     const { log } = useContext(AuthContext);
-    const [appStateLoading, setAppStateLoading] = useState(false);
+
     const [appStateObject, setAppStateObject] = useState([]);
     const [selectedDay, setSelectedDay] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState(false);
@@ -19,17 +19,18 @@ export const Dates = () => {
     const [fulldate, setFullDate] = useState("2023-05-30");
     const [hour, setHour] = useState("");
     const [idHour, setIdHour] = useState(0);
-    const fecha = new Date
+    const fecha = new Date;
     useEffect(() => {
         if (refresh) {
 
 
 
-            setAppStateLoading(true);
+
 
 
             fetchMethods.getFetch(`citas/${barber},${hairCutT},${fulldate}`).then((res) => {
                 setAppStateObject(res.data)
+            console.log(appStateObject)
             });
 
             setRefresh(false);
@@ -69,7 +70,7 @@ export const Dates = () => {
     const confirmDate = () => {
         fetchMethods.postFecth("citas/", { barber: barber, client: log.idperson, hourid: idHour, date: fulldate, hairCut: hairCutT, hour: hour }).then((res) => {
             setRefresh(true);
-            console.log("Creada")
+
         });
     }
     const year = parseInt(fecha.getFullYear());

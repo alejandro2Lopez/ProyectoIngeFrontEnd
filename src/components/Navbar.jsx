@@ -35,7 +35,13 @@ export const Navbar = () => {
                                 Citas
                             </NavLink>   </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                        <NavLink
+                                className="nav-link"
+                                aria-current="page"
+                                to="/CitasAgendadas"
+                            >
+                                Ver citas agendadas
+                            </NavLink>  
                         </li>
 
                         {log.role === "Admin" ? (
