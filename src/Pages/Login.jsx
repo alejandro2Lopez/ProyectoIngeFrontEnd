@@ -1,7 +1,7 @@
 
 import { useState, useContext } from 'react';
 import '../assets/login.css'
-
+import Swal from 'sweetalert2'
 import { fetchMethods } from "../components/FetchMethods";
 
 
@@ -39,8 +39,13 @@ export const Login = () => {
                 dispatch({ type: authTypes.login, role: res.data.role, userName: res.data.username, gmail: res.data.gmail, numberPhone: res.data.numberPhone, idperson: res.data.idperson });
                 navigate("/AddNewDoc");
             } else {
-                alert('usuario o contraseña incorrecta')
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Usuario o contraseña incorrecto',
+                    confirmButtonColor: "#DD6B55"
 
+                })
 
 
             }
@@ -50,8 +55,9 @@ export const Login = () => {
     const handleSignup = () => {
         if (userName.trim() !== "" && email.trim() !== "" && numberphone.trim() !== "" && password.trim() !== "" && confirmPass.trim() !== "") {
             fetchMethods.postFecth("users/signup", { username: userName, gmail: email, password: password, confirmPassword: confirmPass, numberphone: numberphone }).then((res) => {
-                if (res.message === 'Registrado') {
-                    dispatch({ type: authTypes.login, role: "Normal", userName: userName, gmail: email, numberPhone: numberphone });
+                if (res.message === 'registrado') {
+
+                    dispatch({ type: authTypes.login, role: "Normal", userName: userName, gmail: email, numberPhone: numberphone, idperson: res.data[0].idperson });
                     navigate("/AddNewDoc");
 
                 } else {

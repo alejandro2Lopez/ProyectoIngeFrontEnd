@@ -28,7 +28,6 @@ export const UserDate = () => {
 
 
 
-
     return (<>
         <div>
             <LoadingList isLoading={AppStateLoading} contents={userdates} />

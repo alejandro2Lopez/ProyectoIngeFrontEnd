@@ -16,10 +16,14 @@ export const Dates = () => {
     const [refresh, setRefresh] = useState(true);
     const [barber, setBarber] = useState(1);
     const [hairCutT, setHairCut] = useState(1);
-    const [fulldate, setFullDate] = useState("2023-05-30");
+    const fecha = new Date;
+    const year = parseInt(fecha.getFullYear());
+    const month = parseInt(fecha.getMonth() + 1);
+    const day = parseInt(fecha.getDate());
+    const [fulldate, setFullDate] = useState(`${year}-${month}-${day}`);
     const [hour, setHour] = useState("");
     const [idHour, setIdHour] = useState(0);
-    const fecha = new Date;
+   
     useEffect(() => {
         if (refresh) {
 
@@ -30,7 +34,7 @@ export const Dates = () => {
 
             fetchMethods.getFetch(`citas/${barber},${hairCutT},${fulldate}`).then((res) => {
                 setAppStateObject(res.data)
-            console.log(appStateObject)
+                console.log(appStateObject)
             });
 
             setRefresh(false);
@@ -73,9 +77,7 @@ export const Dates = () => {
 
         });
     }
-    const year = parseInt(fecha.getFullYear());
-    const month = parseInt(fecha.getMonth() + 1);
-    const day = parseInt(fecha.getDate());
+
     const minimumDate = {
 
         year: year,
@@ -83,11 +85,11 @@ export const Dates = () => {
         day: day
     };
     const formatInputValue = () => {
-        if (`${selectedDay.year}-0${selectedDay.month}-${selectedDay.day}` !== fulldate) {
-            if (!selectedDay && !selectedMonth) return `Mes: ${month} Day: ${day}`;
+        if (`${selectedDay.year}-${selectedDay.month}-${selectedDay.day}` !== fulldate) {
+            if (!selectedDay && !selectedMonth) return fulldate;
             setRefresh(true);
             console.log(fulldate);
-            setFullDate(`${selectedDay.year}-0${selectedDay.month}-${selectedDay.day}`);
+            setFullDate(`${selectedDay.year}-${selectedDay.month}-${selectedDay.day}`);
             return `Mes: ${selectedDay.month}` + `  Day: ${selectedDay.day}`;
         }
     };
