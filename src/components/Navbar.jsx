@@ -44,7 +44,7 @@ export const Navbar = () => {
                             </NavLink>  
                         </li>
 
-                        {log.role === "Admin" ? (
+                        {log.role === "Administrador" ? (
                         <li className="nav-item dropdown" style={{ visibility: 'visible' }}>
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Configuraciones avanzadas

@@ -19,13 +19,13 @@ const UserRoutes = () => {
 
     {/*Rutas en las que solo puede acceder el admin*/}
     <Routes>
-      <Route element={<ProtectedRoute isAllowed={!!log.log && log.role === "Admin"} />}>
+      <Route element={<ProtectedRoute isAllowed={!!log.log && log.role === "Administrador"} />}>
         <Route path="/AdministrarUsuario" element={<ManageUser />} />
       </ Route>
 
 
       {/* Rutas permitidas para ambos roles*/}
-      <Route element={<ProtectedRoute isAllowed={!!log.log && (log.role === "Normal" || log.role === "Admin")} />}>
+      <Route element={<ProtectedRoute isAllowed={!!log.log && (log.role === "Normal" || log.role === "Administrador")} />}>
         <Route path="/Citas" element={<Dates />} />
         <Route path="/CitasAgendadas" element={<UserDate/>} />
         <Route path="*" element={<Navigate to="/Citas" />} />
