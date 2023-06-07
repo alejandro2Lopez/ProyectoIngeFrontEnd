@@ -56,7 +56,7 @@ export const Login = () => {
 
     const handleSignup = () => {
         if (userName.trim() !== "" && email.trim() !== "" && numberphone.trim() !== "" && password.trim() !== "" && confirmPass.trim() !== "") {
-            var errores = "\n";
+            var errores = "";
 
             if (!validator.isEmail(email)) {
                 console.log("Entré a la email")

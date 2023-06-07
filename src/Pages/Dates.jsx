@@ -1,6 +1,6 @@
 
 import React, { useContext, useEffect, useState } from "react";
-import DatePicker from "@hassanmojab/react-modern-calendar-datepicker";
+import DatePicker from "@sentisso/react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import "../assets/calendar.css"
 import { AuthContext } from "../context/AuthContext";
@@ -23,7 +23,7 @@ export const Dates = () => {
     const [fulldate, setFullDate] = useState(`${year}-${month}-${day}`);
     const [hour, setHour] = useState("");
     const [idHour, setIdHour] = useState(0);
-   
+
     useEffect(() => {
         if (refresh) {
 
@@ -129,6 +129,11 @@ export const Dates = () => {
 
 
     );
+    const isWeekday = (date) => {
+        var b = new Date(date);
+        const day = b.getDay(date);
+        return day !== 0 && day !== 6;
+    };
     return (<>
         <div className="d-flex justify-content-center align-items-center">
 
@@ -149,6 +154,7 @@ export const Dates = () => {
                 inputPlaceholder="Select a date" // placeholder
                 formatInputText={formatInputValue} // format value
                 inputClassName="custom-input" // custom class
+                disabledWeekDays={[0]}
                 shouldHighlightWeekends
                 minimumDate={minimumDate}
             />
