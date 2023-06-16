@@ -129,11 +129,7 @@ export const Dates = () => {
 
 
     );
-    const isWeekday = (date) => {
-        var b = new Date(date);
-        const day = b.getDay(date);
-        return day !== 0 && day !== 6;
-    };
+ 
     return (<>
         <div className="d-flex justify-content-center align-items-center">
 

@@ -55,11 +55,6 @@ export const ManageDates = () => {
     useEffect(() => {
         if (refresh) {
 
-
-
-
-
-
             fetchMethods.getFetch(`citas/${barber},${hairCutT},${fulldate}`).then((res) => {
                 setAppStateObject(res.data)
                 console.log(appStateObject)
@@ -121,42 +116,6 @@ export const ManageDates = () => {
             return `Mes: ${selectedDay.month}` + `  Day: ${selectedDay.day}`;
         }
     };
-    var num = 0;
-    const listItems = appStateObject.map((number) =>
-
-        <>
-            {(() => {
-                if (number.HoraCita !== "Ocupado") {
-                    if (num === 0) {
-                        num++;
-                        return (<div className="col-md-auto">
-                            <div className="d-grid gap-2 ">
-                                <button className="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" onClick={() => getDateTime(number.idHoraCita, number.HoraCita)}>{number.HoraCita}</button>
-                            </div>
-                        </div>)
-                    } else if (num === 1) {
-                        num++;
-                        return (<div className="col-md-auto">
-                            <div className="d-grid gap-2 ">
-                                <button class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" onClick={() => getDateTime(number.idHoraCita, number.HoraCita)}>{number.HoraCita}</button>
-                            </div>
-                        </div>)
-                    } else {
-                        num = 0;
-                        return (<div className="col-md-auto">
-                            <div className="d-grid gap-2">
-                                <button className="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" onClick={() => getDateTime(number.idHoraCita, number.HoraCita)}>{number.HoraCita}</button>
-                            </div>
-                        </div>)
-
-                    }
-                }
-            })()}
-
-        </>
-
-
-    );
     return (<>
     
         <div className="d-flex justify-content-center align-items-center">
