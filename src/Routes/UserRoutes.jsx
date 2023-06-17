@@ -6,7 +6,7 @@ import { Navbar } from "../components/Navbar";
 import { ManageUser } from "../Pages/ManageUser";
 import { ProtectedRoute } from "../components/ProtectedRouter";
 import { ManageDates } from "../Pages/ManageDates";
-
+import { FreeSchedule } from "../Pages/FreeSchedule";
 
 
 
@@ -22,7 +22,8 @@ const UserRoutes = () => {
     <Routes>
       <Route element={<ProtectedRoute isAllowed={!!log.log && log.role === "Administrador"} />}>
         <Route path="/AdministrarUsuario" element={<ManageUser />} />
-        <Route path="/AdministrarCitas" element={<ManageDates />} />
+        <Route path="/Agenda" element={<ManageDates />} />
+        <Route path="/AdministrarCitas" element={<FreeSchedule />} />
       </ Route>
 
 
