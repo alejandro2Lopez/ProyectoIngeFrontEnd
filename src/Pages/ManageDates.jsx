@@ -11,9 +11,6 @@ import List from "../components/List";
 
 import { fetchMethods } from "../components/FetchMethods";
 
-
-
-
 export const ManageDates = () => {
     const { log } = useContext(AuthContext);
 
@@ -80,25 +77,10 @@ export const ManageDates = () => {
         console.log(`Acá al entre ${refresh}`);
 
     }
-    const setearvalor = async (e) => {
-        await setHairCut(e.target.value);
-    }
 
-    const sendDataT = (e) => {
-        setearvalor(e);
-        setRefresh(true);
-
-
-    }
     const getDateTime = (idtime, hour) => {
         setIdHour(idtime);
         setHour(hour);
-    }
-    const confirmDate = () => {
-        fetchMethods.postFecth("citas/", { barber: barber, client: log.idperson, hourid: idHour, date: fulldate, hairCut: hairCutT, hour: hour }).then((res) => {
-            setRefresh(true);
-
-        });
     }
 
     const minimumDate = {

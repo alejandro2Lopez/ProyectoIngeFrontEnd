@@ -26,12 +26,7 @@ export const Dates = () => {
 
     useEffect(() => {
         if (refresh) {
-
-
-
-
-
-
+            
             fetchMethods.getFetch(`citas/${barber},${hairCutT},${fulldate}`).then((res) => {
                 setAppStateObject(res.data)
                 console.log(appStateObject)

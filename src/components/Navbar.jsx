@@ -62,37 +62,26 @@ export const Navbar = () => {
                                     <Link
                                         className="dropdown-item"
                                         aria-current="page"
-                                        to="/AdministrarCitas"
+                                        to="/Agenda"
                                     >
-                                        Administrar citas
+                                        Agenda
                                     </Link>
                                 </li>
+
+                                <li>
+                                <Link
+                                    className="dropdown-item"
+                                    aria-current="page"
+                                    to="/AdministrarCitas"
+                                >
+                                    Administrar Citas
+                                </Link>
+                            </li>
                             </ul>
                         </li>
                     ) : (
                         <li className="nav-item dropdown" style={{ visibility: 'hidden' }}>
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Configuraciones avanzadas
-                            </a>
 
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li> <Link
-                                    className="dropdown-item"
-                                    aria-current="page"
-                                    to="/AdministrarUsuario"
-                                >
-                                    Administrar Usuario
-                                </Link></li>
-                                <li>
-                                    <Link
-                                        className="dropdown-item"
-                                        aria-current="page"
-                                        to="/AdministrarCitas"
-                                    >
-                                        Administrar citas
-                                    </Link>
-                                </li>
-                            </ul>
                         </li>
                     )}
                     
