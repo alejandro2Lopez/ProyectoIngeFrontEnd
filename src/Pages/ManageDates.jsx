@@ -98,7 +98,6 @@ export const ManageDates = () => {
             return `Mes: ${selectedDay.month}` + `  Day: ${selectedDay.day}`;
         }
     };
-
     return (<>
     
         <div className="d-flex justify-content-center align-items-center">
