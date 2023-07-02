@@ -4,7 +4,7 @@ import DatePicker from "@sentisso/react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import "../assets/calendar.css"
 import { AuthContext } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 import { fetchMethods } from "../components/FetchMethods";
 export const Dates = () => {
@@ -67,9 +67,14 @@ export const Dates = () => {
         setHour(hour);
     }
     const confirmDate = () => {
-        fetchMethods.postFecth("citas/", { barber: barber, client: log.idperson, hourid: idHour, date: fulldate, hairCut: hairCutT, hour: hour }).then((res) => {
-            setRefresh(true);
-
+        fetchMethods.postFecth("citas/", { email: log.email, barber: barber, client: log.idperson, hourid: idHour, date: fulldate, hairCut: hairCutT, hour: hour }).then((res) => {
+            Swal.fire({
+                title: 'Cita reservada correctamente',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+              }).then(() => {
+                setRefresh(true)
+              });
         });
     }
 
@@ -124,11 +129,7 @@ export const Dates = () => {
 
 
     );
-    const isWeekday = (date) => {
-        var b = new Date(date);
-        const day = b.getDay(date);
-        return day !== 0 && day !== 6;
-    };
+  
     return (<>
         <div className="d-flex justify-content-center align-items-center">
 

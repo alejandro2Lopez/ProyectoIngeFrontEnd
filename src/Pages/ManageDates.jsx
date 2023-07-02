@@ -7,7 +7,7 @@ import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 import WithLoadingList from "../components/WithLoadingList";
-import List from "../components/List";
+import ListAttendance from "../components/ListAttendance";
 
 import { fetchMethods } from "../components/FetchMethods";
 
@@ -29,7 +29,7 @@ export const ManageDates = () => {
     const [idHour, setIdHour] = useState(0);
    
 
-    const LoadingList = WithLoadingList(List);
+    const LoadingList = WithLoadingList(ListAttendance);
 
     const [userdates, setUserDates] = useState(null)
   
@@ -44,8 +44,6 @@ export const ManageDates = () => {
             setRefresh(false);
 
         }
-
-
 
     }, [setUserDates, setAppStateLoading, refresh, user])
 
@@ -76,11 +74,6 @@ export const ManageDates = () => {
         setRefresh(true);
         console.log(`Acá al entre ${refresh}`);
 
-    }
-
-    const getDateTime = (idtime, hour) => {
-        setIdHour(idtime);
-        setHour(hour);
     }
 
     const minimumDate = {

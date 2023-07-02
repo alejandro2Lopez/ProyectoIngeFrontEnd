@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 
 
+
 import { AuthContext } from "../context/AuthContext";
 import { authTypes } from "../types/authTypes";
 export const Navbar = () => {
@@ -20,7 +21,10 @@ export const Navbar = () => {
     return (<>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">Navbar</a>
+                <a className="navbar-brand" href="#">
+                    
+                    <img src="/192.png" alt="Logo" style={{ width: '40px', height: 'auto' }}/>
+                    </a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -90,7 +94,7 @@ export const Navbar = () => {
                    
                     <form className="d-flex">
 
-                        <button className="btn btn-outline-success" type="buttin" onClick={handleLogout}>Exit</button>
+                        <button className="btn btn-outline-success" type="buttin" onClick={handleLogout}>Salir <img src="/exit.png" alt="Logo" style={{ width: '20px', height: 'auto' }}/></button>
                     </form>
                 </div>
             </div>
