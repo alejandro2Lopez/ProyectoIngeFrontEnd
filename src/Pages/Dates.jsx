@@ -169,8 +169,11 @@ export const Dates = () => {
         </div>
         <div>
             <hr />
-
-            <div class="container">
+            {listItems.length === 0 ? (
+                <h1>Sin citas disponibles</h1>
+            ) : (
+                
+                <div class="container">
                 <div class="row justify-content-center">
                     <div class="row gy-1"> {listItems}</div>
                     <div
@@ -211,6 +214,8 @@ export const Dates = () => {
                     </div>
                 </div>
             </div>
+            )}
+            
         </div>
 
     </>

@@ -8,13 +8,14 @@ const List = (props) => {
     const [hora, setHora] = useState(0);
     const [date, setDate] = useState(null);
     const [ready, setReady] = useState(false)
-    const { contents } = props;
+    const { contents, onRefresh } = props; 
     if (!contents || contents.length === 0) { return <h1>No Hay citas agendadas</h1> }
 
 
     const handleDeleteDate = () => {
         if (ready) {
             fetchMethods.deleteFetch(`citas/citasdeusuario/${log.idperson},${hora},${date}`).then(() => {
+                onRefresh();
             })
             setReady(false)
         }
@@ -23,13 +24,16 @@ const List = (props) => {
     const handleAttendace = () => {
         if (ready) {
             fetchMethods.putFetch(`citas/ausenciadelcliente/${hora},${date}`).then(() => {
+                onRefresh();
             })
             setReady(false)
+            
         }
     }
     const handleAttendaceTrue = () => {
         if (ready) {
             fetchMethods.putFetch(`citas/presenciadelcliente/${hora},${date}`).then(() => {
+                onRefresh();
             })
             setReady(false)
         }
@@ -106,7 +110,7 @@ const List = (props) => {
                             >
                                 Cerrar
                             </button>
-                            <button type="onsubmit" data-bs-dismiss="modal" onClick={handleDeleteDate} className="btn btn-primary">
+                            <button type="button" data-bs-dismiss="modal" onClick={handleDeleteDate} className="btn btn-primary">
                                 Aceptar
                             </button>
                         </div>
@@ -146,7 +150,7 @@ const List = (props) => {
                             >
                                 Cerrar
                             </button>
-                            <button type="onsubmit" data-bs-dismiss="modal" onClick={handleAttendace} className="btn btn-primary">
+                            <button type="button" data-bs-dismiss="modal" onClick={handleAttendace} className="btn btn-primary">
                                 Aceptar
                             </button>
                         </div>
@@ -186,7 +190,7 @@ const List = (props) => {
                             >
                                 Cerrar
                             </button>
-                            <button type="onsubmit" data-bs-dismiss="modal" onClick={handleAttendaceTrue} className="btn btn-primary">
+                            <button type="button" data-bs-dismiss="modal" onClick={handleAttendaceTrue} className="btn btn-primary">
                                 Aceptar
                             </button>
                         </div>

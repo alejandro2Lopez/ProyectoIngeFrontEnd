@@ -37,7 +37,8 @@ export const Navbar = () => {
                                 to="/Citas"
                             >
                                 Citas
-                            </NavLink>   </li>
+                            </NavLink>   
+                        </li>
                         <li class="nav-item">
                         <NavLink
                                 className="nav-link"
