@@ -4,66 +4,47 @@ import DatePicker from "@hassanmojab/react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import "../assets/calendar.css"
 import { AuthContext } from "../context/AuthContext";
-import { Link } from "react-router-dom";
 
 import WithLoadingList from "../components/WithLoadingList";
-import List from "../components/List";
+import ListAttendance from "../components/ListAttendance";
 
 import { fetchMethods } from "../components/FetchMethods";
 
 export const ManageDates = () => {
     const { log } = useContext(AuthContext);
 
-    const [appStateObject, setAppStateObject] = useState([]);
     const [selectedDay, setSelectedDay] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState(false);
     const [refresh, setRefresh] = useState(true);
     const [barber, setBarber] = useState(1);
-    const [hairCutT, setHairCut] = useState(1);
     const fecha = new Date;
     const year = parseInt(fecha.getFullYear());
     const month = parseInt(fecha.getMonth() + 1);
     const day = parseInt(fecha.getDate());
     const [fulldate, setFullDate] = useState(`${year}-${month}-${day}`);
-    const [hour, setHour] = useState("");
-    const [idHour, setIdHour] = useState(0);
-   
 
-    const LoadingList = WithLoadingList(List);
+    const handleRefresh = () => {
+        setRefresh(!refresh);
+    };
+      
+
+    const LoadingList = WithLoadingList(ListAttendance);
 
     const [userdates, setUserDates] = useState(null)
   
     const [AppStateLoading, setAppStateLoading] = useState(false);
-    const user = log.idperson;
+    
+    
     useEffect(() => {
         if (refresh) {
-            setAppStateLoading(true);
             fetchMethods.getFetch(`citas/citasbarbero/${barber},${fulldate}`).then((res) => setUserDates(res.data));
-            setAppStateLoading(false);
 
             setRefresh(false);
 
         }
 
+    }, [setUserDates,  refresh])
 
-
-    }, [setUserDates, setAppStateLoading, refresh, user])
-
-    useEffect(() => {
-        if (refresh) {
-
-            fetchMethods.getFetch(`citas/${barber},${hairCutT},${fulldate}`).then((res) => {
-                setAppStateObject(res.data)
-                console.log(appStateObject)
-            });
-
-            setRefresh(false);
-
-        } console.log('entre1');
-
-
-
-    }, [setAppStateObject, refresh, setFullDate, fulldate, hairCutT, setHairCut, barber, setBarber])
     const sendDataB = async (e) => {
 
 
@@ -73,14 +54,9 @@ export const ManageDates = () => {
         setBarber(e.target.value);
 
 
-        setRefresh(true);
+        setRefresh(true); //Refrezca cuando se selecciona el barbero
         console.log(`Acá al entre ${refresh}`);
 
-    }
-
-    const getDateTime = (idtime, hour) => {
-        setIdHour(idtime);
-        setHour(hour);
     }
 
     const minimumDate = {
@@ -92,7 +68,7 @@ export const ManageDates = () => {
     const formatInputValue = () => {
         if (`${selectedDay.year}-${selectedDay.month}-${selectedDay.day}` !== fulldate) {
             if (!selectedDay && !selectedMonth) return fulldate;
-            setRefresh(true);
+            setRefresh(true); //Refresca cuando uno hace un cambi en la fecha
             console.log(fulldate);
             setFullDate(`${selectedDay.year}-${selectedDay.month}-${selectedDay.day}`);
             return `Mes: ${selectedDay.month}` + `  Day: ${selectedDay.day}`;
@@ -103,7 +79,6 @@ export const ManageDates = () => {
         <div className="d-flex justify-content-center align-items-center">
             <div className="dropdown  col-xs-*">
                 <select className="form-select" aria-label="Default select example" onChange={(e) => { sendDataB(e) }}>
-                    <option value={1}>Barbero</option>
                     <option value={1}>Andrés R</option>
                     <option value={2}>Michael</option>
 
@@ -121,10 +96,15 @@ export const ManageDates = () => {
             />
         </div>
 
+       {/* <button type="button" onClick={() => setRefresh(true)}>
+            Actualizar
+        </button>*/}
+
         <div>
-            <LoadingList isLoading={AppStateLoading} contents={userdates} />
+            <LoadingList isLoading={AppStateLoading} contents={userdates} onRefresh={handleRefresh} />
         </div>
        
+        
     </>
     );
 }

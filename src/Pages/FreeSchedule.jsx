@@ -3,7 +3,7 @@ import DatePicker from "@hassanmojab/react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import "../assets/calendar.css";
 import { AuthContext } from "../context/AuthContext";
-
+import Swal from 'sweetalert2';
 
 import { fetchMethods } from "../components/FetchMethods";
 
@@ -22,8 +22,6 @@ export const FreeSchedule = () => {
   const [fulldate, setFullDate] = useState(`${year}-${month}-${day}`);
   const [startHour, setStartHour] = useState("");
   const [endHour, setEndHour] = useState("");
-  const [idHour, setIdHour] = useState(0);
-  const [hour, setHour] = useState("");
   const [vectorHours, setvectorHours] = useState([]);
 
   useEffect(() => {
@@ -39,39 +37,6 @@ export const FreeSchedule = () => {
     } console.log('entre1');
 
   }, [setvectorHours, refresh, setFullDate, fulldate, hairCutT, setHairCut, barber, setBarber])
-
-  const availableHours = [
-    "08:00 am",
-    "08:20 am",
-    "08:40 am",
-    "09:00 am",
-    "09:20 am",
-    "09:40 am",
-    "10:00 am",
-    "10:20 am",
-    "10:40 am",
-    "11:00 am",
-    "11:20 am",
-    "11:40 am",
-    "01:00 pm",
-    "01:20 pm",
-    "01:40 pm",
-    "02:00 pm",
-    "02:20 pm",
-    "02:40 pm",
-    "03:00 pm",
-    "03:20 pm",
-    "03:40 pm",
-    "04:00 pm",
-    "04:20 pm",
-    "04:40 pm",
-    "05:00 pm",
-    "05:20 pm",
-    "05:40 pm",
-    "06:00 pm",
-    "06:20 pm",
-    "06:40 pm",
-  ];
 
   const handleStartHourChange = (e) => {
     setStartHour(e.target.value);
@@ -93,13 +58,6 @@ export const FreeSchedule = () => {
 
   }
 
-  const confirmDate = () => {
-      fetchMethods.postFecth("citas/", { barber: barber, client: log.idperson, hourid: idHour, date: fulldate, hairCut: hairCutT, hour: hour }).then((res) => {
-          setRefresh(true);
-
-      });
-  }
-
   const minimumDate = {
 
     year: year,
@@ -115,6 +73,19 @@ export const FreeSchedule = () => {
           return `Mes: ${selectedDay.month}` + `  Day: ${selectedDay.day}`;
       }
   };
+
+  const book = () => {
+    fetchMethods.postFecth("citas/reservar", { barber: barber, startHour: startHour, endHour: endHour, date:fulldate }).then((res) => {
+        Swal.fire({
+          title: 'Reservado correctamente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        }).then(() => {
+          setRefresh(true)
+        });
+    });
+  };
+
   console.log(vectorHours);
   return (
     <>
@@ -139,6 +110,7 @@ export const FreeSchedule = () => {
           inputPlaceholder="Select a date" // placeholder
           formatInputText={formatInputValue} // format value
           inputClassName="custom-input" // custom class
+          disabledWeekDays={[0]}
           shouldHighlightWeekends
           minimumDate={minimumDate}
         />
@@ -169,16 +141,21 @@ export const FreeSchedule = () => {
             onChange={handleEndHourChange}
           >
             <option value="">Hora final</option>
-            {vectorHours.map((hour) => (
-              <option key={hour.id} value={hour.HoraCita }>
-              {hour.HoraCita}
+            {vectorHours.map((data) => (
+              <option key={data.id} value={data.HoraCita }>
+              {data.HoraCita}
               </option>
             ))}
           </select>
-        </div>
+        </div> 
       </div>
 
-   
+      <div className="d-flex justify-content-center align-items-center mt-3">
+        <button className="btn btn-primary" onClick={book}>
+          Reservar espacio libre
+        </button>
+      </div>
+
     </>
   );
 };

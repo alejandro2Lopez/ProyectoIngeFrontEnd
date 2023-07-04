@@ -14,6 +14,18 @@ const postFecth = async (path, body) => {
 
     return await response.json();
 }
+const putFetch = async (path, body) => {
+    let response = await fetch(`${process.env.REACT_APP_API_URL}/${path}`, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+
+    return await response.json();
+}
 const deleteFetch = async (path) => {
     let response = await fetch(`${process.env.REACT_APP_API_URL}/${path}`, {
         method: 'DELETE'
@@ -23,5 +35,6 @@ const deleteFetch = async (path) => {
 module.exports.fetchMethods = {
     getFetch,
     postFecth,
+    putFetch,
     deleteFetch
 }
