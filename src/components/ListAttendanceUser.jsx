@@ -9,7 +9,7 @@ const List = (props) => {
     const [date, setDate] = useState(null);
     const [ready, setReady] = useState(false)
     const { contents, onRefresh } = props; 
-    if (!contents || contents.length === 0) { return <h1>No Hay citas agendadas</h1> }
+    if (!contents || contents.length === 0) { return <h1>Sin datos del cliente seleccionado</h1> }
 
 
     const handleDeleteDate = () => {
@@ -49,26 +49,16 @@ const List = (props) => {
         return (
             <>
                 <div className="card" >
-                    <div className="card-header" >Cita</div>
+                    <div className="card-header" style={{display: 'flex',justifyContent: 'center', alignItems: 'center'}}>Asistencia</div>
                     <div className="card-body">
-                        <h5 className="card-title"> Fecha: {date.fecha.toString().substring(0, 10)} Hora: {date.HoraCita}</h5>
+                        <p className="card-title"> Cliente: {date.email} </p>
                         <hr></hr>
-                        <p className="card-text">
-                            <div> Nombre del profesional: {date.Barber}</div>
-                            <div> Nombre del cliente: {date.Client}</div>
-                            <div> Correo: {date.Email}</div>
-                            <div> Tipo de corte: {date.HairCut}</div>
+                        <h5 className="card-title">
+                            <div> Citas a las que asistio: {date.conAsistencia}</div>
+                            <div> Citas a las que no asistio: {date.sinAsistencia}</div>
 
-                        </p>
+                        </h5>
 
-                        {date.cancelar == 0 ? (<h1></h1>) : (
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10)) }}>Cancelar</button>)}
-
-                        {date.asistenciaSN == 1 ? (
-                            <button type="button" class="custom-green-btn" color='warning' data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10))}}>Asistio</button>
-                        ) : (
-                            <button type="button" class="custom-orange-btn" data-bs-toggle="modal" data-bs-target="#exampleModal3" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10))}}>Ausente</button>
-                        )}  
                     </div>
                     
                    

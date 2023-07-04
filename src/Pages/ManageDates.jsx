@@ -34,7 +34,7 @@ export const ManageDates = () => {
   
     const [AppStateLoading, setAppStateLoading] = useState(false);
     
-    const user = log.idperson;
+    
     useEffect(() => {
         if (refresh) {
             fetchMethods.getFetch(`citas/citasbarbero/${barber},${fulldate}`).then((res) => setUserDates(res.data));
@@ -43,7 +43,7 @@ export const ManageDates = () => {
 
         }
 
-    }, [setUserDates,  refresh, user])
+    }, [setUserDates,  refresh])
 
     const sendDataB = async (e) => {
 

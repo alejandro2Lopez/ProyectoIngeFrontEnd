@@ -141,9 +141,9 @@ export const FreeSchedule = () => {
             onChange={handleEndHourChange}
           >
             <option value="">Hora final</option>
-            {vectorHours.map((hour) => (
-              <option key={hour.id} value={hour.HoraCita }>
-              {hour.HoraCita}
+            {vectorHours.map((data) => (
+              <option key={data.id} value={data.HoraCita }>
+              {data.HoraCita}
               </option>
             ))}
           </select>
