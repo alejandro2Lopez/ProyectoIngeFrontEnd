@@ -122,7 +122,7 @@ export const Login = () => {
                 <div className="main">
                     <div className="d-flex justify-content-end align-items-end">
                         <button id="enviar" className='btn' data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" style={{ color: "white" }}>
-                            About us <FontAwesomeIcon icon={faQuestionCircle} size="xl" color='White' />
+                            Andrés Barbería<FontAwesomeIcon icon={faQuestionCircle} size="xl" color='White' />
                         </button >
                     </div>
                     <input type="checkbox" id="chk" aria-hidden="true" />

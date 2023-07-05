@@ -151,7 +151,7 @@ export const FreeSchedule = () => {
       </div>
 
       <div className="d-flex justify-content-center align-items-center mt-3">
-        <button className="btn btn-primary" onClick={book}>
+        <button className="btn btn-secondary" onClick={book}>
           Reservar espacio libre
         </button>
       </div>

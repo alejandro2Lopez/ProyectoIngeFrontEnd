@@ -104,7 +104,7 @@ export const Navbar = () => {
 
                     <form className="d-flex">
 
-                        <button className="btn btn-outline-success" type="buttin" onClick={handleLogout}>Salir <img src="/exit.png" alt="Logo" style={{ width: '20px', height: 'auto' }} /></button>
+                        <button className="btn" type="buttin" onClick={handleLogout}>Salir <img src="/exit.png" alt="Logo" style={{ width: '20px', height: 'auto' }} /></button>
                     </form>
                 </div>
             </div>

@@ -69,12 +69,14 @@ export const Dates = () => {
     const confirmDate = () => {
         fetchMethods.postFecth("citas/", { email: log.email, barber: barber, client: log.idperson, hourid: idHour, date: fulldate, hairCut: hairCutT, hour: hour }).then((res) => {
             Swal.fire({
-                title: 'Cita reservada correctamente',
+                position: 'top-center',
                 icon: 'success',
-                confirmButtonText: 'Aceptar',
-              }).then(() => {
+                title: 'Se ha agendado su cita con éxito',
+                showConfirmButton: false,
+                timer: 1500
+              })
                 setRefresh(true)
-              });
+             
         });
     }
 
