@@ -4,7 +4,7 @@ import DatePicker from "@sentisso/react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import "../assets/calendar.css"
 import { AuthContext } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+
 
 import { fetchMethods } from "../components/FetchMethods";
 export const Dates = () => {
@@ -26,13 +26,7 @@ export const Dates = () => {
 
     useEffect(() => {
         if (refresh) {
-
-
-
-
-
-
-            fetchMethods.getFetch(`citas/${barber},${hairCutT},${fulldate}`).then((res) => {
+         fetchMethods.getFetch(`citas/${barber},${hairCutT},${fulldate}`).then((res) => {
                 setAppStateObject(res.data)
                 console.log(appStateObject)
             });

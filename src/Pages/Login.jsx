@@ -33,12 +33,13 @@ export const Login = () => {
 
     const handleLogin = () => {
 
-        fetchMethods.postFecth("users/login", { gmail: user, password: pass }).then((res) => {
+        fetchMethods.postFecth("users/login", { email: user, password: pass }).then((res) => {
             console.log(res)
 
 
             if (res.message === 'Loggeado') {
-                dispatch({ type: authTypes.login, role: res.data.role, userName: res.data.username, gmail: res.data.gmail, numberPhone: res.data.numberPhone, idperson: res.data.idperson });
+                alert(res.data.email)
+                dispatch({ type: authTypes.login, role: res.data.role, userName: res.data.username, email: res.data.email, numberPhone: res.data.numberPhone, idperson: res.data.idperson });
                 navigate("/AddNewDoc");
             } else {
                 Swal.fire({
@@ -74,7 +75,7 @@ export const Login = () => {
             if (errores.length <= 0) {
                 fetchMethods.postFecth("users/signup", { username: userName, email: email, password: password, confirmPassword: confirmPass, numberphone: numberphone }).then((res) => {
                     if (res.message === 'registrado') {
-                        dispatch({ type: authTypes.login, role: "Normal", userName: userName, gmail: email, numberPhone: numberphone, idperson: res.data[0].idperson });
+                        dispatch({ type: authTypes.login, role: "Normal", userName: userName, email: email, numberPhone: numberphone, idperson: res.data[0].idperson });
                         navigate("/AddNewDoc");
 
                     } else {

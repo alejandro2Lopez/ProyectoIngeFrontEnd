@@ -8,7 +8,7 @@ export const AuthReducer = (state = {}, action) => {
         log: true,
         role: action.role,
         userName: action.userName,
-        gmail: action.gmail,
+        email: action.email,
         numberPhone: action.numberPhone,
         idperson: action.idperson
       };
