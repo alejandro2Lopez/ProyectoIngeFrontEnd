@@ -26,7 +26,7 @@ export const Dates = () => {
 
     useEffect(() => {
         if (refresh) {
-            
+
             fetchMethods.getFetch(`citas/${barber},${hairCutT},${fulldate}`).then((res) => {
                 setAppStateObject(res.data)
                 console.log(appStateObject)
@@ -74,9 +74,9 @@ export const Dates = () => {
                 title: 'Se ha agendado su cita con éxito',
                 showConfirmButton: false,
                 timer: 1500
-              })
-                setRefresh(true)
-             
+            })
+            setRefresh(true)
+
         });
     }
 
@@ -96,6 +96,7 @@ export const Dates = () => {
         }
     };
     var num = 0;
+    var Avaibledate = 0;
     const listItems = appStateObject.map((number) =>
 
         <>
@@ -103,6 +104,7 @@ export const Dates = () => {
                 if (number.HoraCita !== "Ocupado") {
                     if (num === 0) {
                         num++;
+                        Avaibledate++;
                         return (<div className="col-md-auto">
                             <div className="d-grid gap-2 ">
                                 <button className="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" onClick={() => getDateTime(number.idHoraCita, number.HoraCita)}>{number.HoraCita}</button>
@@ -110,6 +112,7 @@ export const Dates = () => {
                         </div>)
                     } else if (num === 1) {
                         num++;
+                        Avaibledate++;
                         return (<div className="col-md-auto">
                             <div className="d-grid gap-2 ">
                                 <button class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" onClick={() => getDateTime(number.idHoraCita, number.HoraCita)}>{number.HoraCita}</button>
@@ -117,6 +120,7 @@ export const Dates = () => {
                         </div>)
                     } else {
                         num = 0;
+                        Avaibledate++;
                         return (<div className="col-md-auto">
                             <div className="d-grid gap-2">
                                 <button className="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" onClick={() => getDateTime(number.idHoraCita, number.HoraCita)}>{number.HoraCita}</button>
@@ -131,7 +135,7 @@ export const Dates = () => {
 
 
     );
-
+    console.log("Entré" + listItems)
     return (<>
         <div className="d-flex justify-content-center align-items-center">
 
@@ -171,53 +175,66 @@ export const Dates = () => {
         </div>
         <div>
             <hr />
-            {listItems.length === 0 ? (
-                <h1>Sin citas disponibles</h1>
+            {Avaibledate == 0 ? (
+                <>
+                    <div className="d-flex justify-content-center align-items-center">
+                        <h1>No hay citas disponibles</h1>
+
+                    </div>
+                    <div className="d-flex justify-content-center align-items-center">
+                        <img
+                            src={require("../assets/Barber.png")}
+                            alt="avatar"
+                            className="rounded-circle img-fluid"
+                            style={{ width: 200 }}
+                        />
+                    </div>
+                </>
             ) : (
-                
+
                 <div class="container">
-                <div class="row justify-content-center">
-                    <div class="row gy-1"> {listItems}</div>
-                    <div
-                        className="modal fade"
-                        id="exampleModal"
-                        tabIndex={-1}
-                        aria-labelledby="exampleModalLabel"
-                        aria-hidden="true"
-                    >
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLabel">
-                                        Confirmar Cita
-                                    </h5>
-                                    <button
-                                        type="button"
-                                        className="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                    />
-                                </div>
-                                <div className="modal-body">Desea confirmar la cita en la fecha: {fulldate} a las: {hour} </div>
-                                <div className="modal-footer">
-                                    <button
-                                        type="button"
-                                        className="btn btn-secondary"
-                                        data-bs-dismiss="modal"
-                                    >
-                                        Cerrar
-                                    </button>
-                                    <button type="button" data-bs-dismiss="modal" onClick={confirmDate} className="btn btn-primary">
-                                        Aceptar
-                                    </button>
+                    <div class="row justify-content-center">
+                        <div class="row gy-1"> {listItems}</div>
+                        <div
+                            className="modal fade"
+                            id="exampleModal"
+                            tabIndex={-1}
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                        >
+                            <div className="modal-dialog">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="exampleModalLabel">
+                                            Confirmar Cita
+                                        </h5>
+                                        <button
+                                            type="button"
+                                            className="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                        />
+                                    </div>
+                                    <div className="modal-body">Desea confirmar la cita en la fecha: {fulldate} a las: {hour} </div>
+                                    <div className="modal-footer">
+                                        <button
+                                            type="button"
+                                            className="btn btn-secondary"
+                                            data-bs-dismiss="modal"
+                                        >
+                                            Cerrar
+                                        </button>
+                                        <button type="button" data-bs-dismiss="modal" onClick={confirmDate} className="btn btn-primary">
+                                            Aceptar
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             )}
-            
+
         </div>
 
     </>
