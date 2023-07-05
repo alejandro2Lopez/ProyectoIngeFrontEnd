@@ -12,6 +12,7 @@ import { FreeSchedule } from "../Pages/FreeSchedule";
 
 import { AuthContext } from "../context/AuthContext";
 import { UserDate } from "../Pages/UserDates";
+import { ChangePass } from "../Pages/ChangePassword";
 const UserRoutes = () => {
   const { log } = useContext(AuthContext);
   return (<>
@@ -24,6 +25,7 @@ const UserRoutes = () => {
         <Route path="/AdministrarUsuario" element={<ManageUser />} />
         <Route path="/Agenda" element={<ManageDates />} />
         <Route path="/AdministrarCitas" element={<FreeSchedule />} />
+        <Route path="/CambiarContrasennia" element={<ChangePass/>} />
       </ Route>
 
 

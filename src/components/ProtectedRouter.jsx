@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 export const ProtectedRoute = ({
   isAllowed,
-  redirectTo = "/received" ,
+  redirectTo = "" ,
   children,
 }) => {
 

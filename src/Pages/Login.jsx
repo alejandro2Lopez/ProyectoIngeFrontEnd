@@ -4,12 +4,12 @@ import '../assets/login.css'
 import Swal from 'sweetalert2'
 import { fetchMethods } from "../components/FetchMethods";
 import validator from 'validator'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { authTypes } from "../types/authTypes";
 import { NavLink } from 'react-router-dom';
-
+import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 
 export const Login = () => {
     const { dispatch } = useContext(AuthContext)
@@ -120,9 +120,17 @@ export const Login = () => {
                 <link rel="stylesheet" type="text/css" href="slide navbar style.css" />
                 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet" />
                 <div className="main">
+                    <div className="d-flex justify-content-end align-items-end">
+                        <button id="enviar" className='btn' data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" style={{ color: "white" }}>
+                            About us <FontAwesomeIcon icon={faQuestionCircle} size="xl" color='White' />
+                        </button >
+                    </div>
                     <input type="checkbox" id="chk" aria-hidden="true" />
+
                     <div className="signup">
+
                         <div>
+
                             <label htmlFor="chk" aria-hidden="true">Ingresar</label>
 
                             <input type="email" name="email" placeholder="Email" value={user} onChange={(e) => setUser(e.target.value)} required />
@@ -131,7 +139,7 @@ export const Login = () => {
 
                             <button className='button' onClick={handleLogin} >Aceptar</button>
                             <div className="d-flex justify-content-center align-items-center">
-                                <NavLink style={{ color: 'white' }} >Ha olvidado su contraseña?</NavLink>
+                                <NavLink style={{ color: 'white' }} to="/RecuperarContrasennia">Ha olvidado su contraseña?</NavLink>
                             </div>
 
                         </div>
@@ -151,16 +159,40 @@ export const Login = () => {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
 
+            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalToggleLabel2" >About us</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <h5>Andrés Barbería </h5>
+                            <hr></hr>
+                            <p>Dedicado desde el 2015 en el servicio de la barbería, siempre brindando confort y excelencia a nuestros clientes con sus cortes de cabello.</p>
+                            <h5>Contacto</h5>
+                            <hr></hr>
+                            <p>Correo: AndrésB@gmail.com</p>
+                            <p>Celular: 83118944</p>
+                            <h5>Ubicación</h5>
+                            <hr></hr>
+                            <div className='d-flex justify-content-center align-items-center'>
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15713.39736945841!2d-84.311392!3d10.0704349!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0594281566997%3A0xf3b6d1ce5b1b4d32!2zQW5kcsOpcyBCYXJiZXLDrWE!5e0!3m2!1ses!2scr!4v1688571827240!5m2!1ses!2scr"
+                                    width={300}
+                                    height={300}
+                                    style={{ border: 0 }}
+                                    allowFullScreen=""
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
                     </div>
                 </div>
             </div>

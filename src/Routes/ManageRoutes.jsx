@@ -5,6 +5,7 @@ import { Login } from "../Pages/Login";
 import { ProtectedRoute } from "../components/ProtectedRouter";
 import { Navigate } from "react-router";
 import UserRoutes from "./UserRoutes";
+import { RecoverPass } from "../Pages/RecoverPass";
 
 const AdminRouter = () => {
   const { log } = useContext(AuthContext);
@@ -16,6 +17,7 @@ const AdminRouter = () => {
         <Routes>
           <Route element={<ProtectedRoute redirectTo='/login' isAllowed={log.log === false} />}>
             <Route path="/login" element={<Login />} />
+            <Route path="/RecuperarContrasennia" element={<RecoverPass />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </ Route>
         </Routes>

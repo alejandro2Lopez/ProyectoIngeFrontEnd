@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 
@@ -22,9 +22,9 @@ export const Navbar = () => {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">
-                    
-                    <img src="/192.png" alt="Logo" style={{ width: '40px', height: 'auto' }}/>
-                    </a>
+
+                    <img src="/192.png" alt="Logo" style={{ width: '40px', height: 'auto' }} />
+                </a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -37,65 +37,74 @@ export const Navbar = () => {
                                 to="/Citas"
                             >
                                 Citas
-                            </NavLink>   
+                            </NavLink>
                         </li>
                         <li class="nav-item">
-                        <NavLink
+                            <NavLink
                                 className="nav-link"
                                 aria-current="page"
                                 to="/CitasAgendadas"
                             >
                                 Ver citas agendadas
-                            </NavLink>  
+                            </NavLink>
+                        </li>
+                        <li class="nav-item">
+                            <NavLink
+                                className="nav-link"
+                                aria-current="page"
+                                to="/CambiarContrasennia"
+                            >
+                                Cambiar contraseña
+                            </NavLink>
                         </li>
 
                         {log.role === "Administrador" ? (
-                        <li className="nav-item dropdown" style={{ visibility: 'visible' }}>
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Configuraciones avanzadas
-                            </a>
+                            <li className="nav-item dropdown" style={{ visibility: 'visible' }}>
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Configuraciones avanzadas
+                                </a>
 
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li> <Link
-                                    className="dropdown-item"
-                                    aria-current="page"
-                                    to="/AdministrarUsuario"
-                                >
-                                    Administrar Usuario
-                                </Link></li>
-                                <li>
-                                    <Link
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li> <Link
                                         className="dropdown-item"
                                         aria-current="page"
-                                        to="/Agenda"
+                                        to="/AdministrarUsuario"
                                     >
-                                        Agenda
-                                    </Link>
-                                </li>
+                                        Administrar Usuario
+                                    </Link></li>
+                                    <li>
+                                        <Link
+                                            className="dropdown-item"
+                                            aria-current="page"
+                                            to="/Agenda"
+                                        >
+                                            Agenda
+                                        </Link>
+                                    </li>
 
-                                <li>
-                                <Link
-                                    className="dropdown-item"
-                                    aria-current="page"
-                                    to="/AdministrarCitas"
-                                >
-                                    Administrar Citas
-                                </Link>
+                                    <li>
+                                        <Link
+                                            className="dropdown-item"
+                                            aria-current="page"
+                                            to="/AdministrarCitas"
+                                        >
+                                            Administrar Citas
+                                        </Link>
+                                    </li>
+                                </ul>
                             </li>
-                            </ul>
-                        </li>
-                    ) : (
-                        <li className="nav-item dropdown" style={{ visibility: 'hidden' }}>
+                        ) : (
+                            <li className="nav-item dropdown" style={{ visibility: 'hidden' }}>
 
-                        </li>
-                    )}
-                    
+                            </li>
+                        )}
+
                     </ul>
 
-                   
+
                     <form className="d-flex">
 
-                        <button className="btn btn-outline-success" type="buttin" onClick={handleLogout}>Salir <img src="/exit.png" alt="Logo" style={{ width: '20px', height: 'auto' }}/></button>
+                        <button className="btn btn-outline-success" type="buttin" onClick={handleLogout}>Salir <img src="/exit.png" alt="Logo" style={{ width: '20px', height: 'auto' }} /></button>
                     </form>
                 </div>
             </div>
