@@ -3,13 +3,9 @@ import { useState, useContext } from 'react';
 import '../assets/RecoverPass.css'
 import Swal from 'sweetalert2'
 import { fetchMethods } from "../components/FetchMethods";
-import validator from 'validator'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
-import { authTypes } from "../types/authTypes";
-import { NavLink } from 'react-router-dom';
-import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
+
 
 export const RecoverPass = () => {
     const { dispatch } = useContext(AuthContext)
@@ -18,15 +14,21 @@ export const RecoverPass = () => {
 
     {/*Variables para loggearse*/ }
     const [user, setUser] = useState("");
-
-
-    const [error, setError] = useState("");
-
-
     const backtologin = () => {
         navigate('login')
     }
-
+    
+    const recoveryPass = () => {
+        fetchMethods.getFetch(`users/recuperarContrasenna/${user}`).then((res) => {
+            Swal.fire({
+              title: 'Nueva contraseña enviada al correo: '+user,
+              icon: 'success',
+              confirmButtonText: 'Aceptar',
+            }).then(() => {
+                navigate('login')
+            });
+        });
+    }
 
 
     return (
@@ -58,7 +60,7 @@ export const RecoverPass = () => {
                                 <div className="d-flex justify-content-center align-items-center">
 
                                     <button className='button1' onClick={backtologin} >Regresar</button>
-                                    <button className='button1' onClick={() => { console.log("Hola") }} >Aceptar</button>
+                                    <button className='button1' onClick={recoveryPass} >Aceptar</button>
 
 
 
