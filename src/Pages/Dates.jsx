@@ -4,7 +4,7 @@ import DatePicker from "@sentisso/react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import "../assets/calendar.css"
 import { AuthContext } from "../context/AuthContext";
-
+import Swal from 'sweetalert2';
 
 import { fetchMethods } from "../components/FetchMethods";
 export const Dates = () => {
@@ -26,7 +26,12 @@ export const Dates = () => {
 
     useEffect(() => {
         if (refresh) {
+<<<<<<< HEAD
          fetchMethods.getFetch(`citas/${barber},${hairCutT},${fulldate}`).then((res) => {
+=======
+            
+            fetchMethods.getFetch(`citas/${barber},${hairCutT},${fulldate}`).then((res) => {
+>>>>>>> 0bc09de68d12a7a765b409ae88f81b3b120f5db0
                 setAppStateObject(res.data)
                 console.log(appStateObject)
             });
@@ -66,9 +71,14 @@ export const Dates = () => {
         setHour(hour);
     }
     const confirmDate = () => {
-        fetchMethods.postFecth("citas/", { barber: barber, client: log.idperson, hourid: idHour, date: fulldate, hairCut: hairCutT, hour: hour }).then((res) => {
-            setRefresh(true);
-
+        fetchMethods.postFecth("citas/", { email: log.email, barber: barber, client: log.idperson, hourid: idHour, date: fulldate, hairCut: hairCutT, hour: hour }).then((res) => {
+            Swal.fire({
+                title: 'Cita reservada correctamente',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+              }).then(() => {
+                setRefresh(true)
+              });
         });
     }
 
@@ -123,7 +133,7 @@ export const Dates = () => {
 
 
     );
- 
+
     return (<>
         <div className="d-flex justify-content-center align-items-center">
 
@@ -163,8 +173,11 @@ export const Dates = () => {
         </div>
         <div>
             <hr />
-
-            <div class="container">
+            {listItems.length === 0 ? (
+                <h1>Sin citas disponibles</h1>
+            ) : (
+                
+                <div class="container">
                 <div class="row justify-content-center">
                     <div class="row gy-1"> {listItems}</div>
                     <div
@@ -205,6 +218,8 @@ export const Dates = () => {
                     </div>
                 </div>
             </div>
+            )}
+            
         </div>
 
     </>

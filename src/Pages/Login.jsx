@@ -38,7 +38,6 @@ export const Login = () => {
 
 
             if (res.message === 'Loggeado') {
-                alert(res.data.email)
                 dispatch({ type: authTypes.login, role: res.data.role, userName: res.data.username, email: res.data.email, numberPhone: res.data.numberPhone, idperson: res.data.idperson });
                 navigate("/AddNewDoc");
             } else {

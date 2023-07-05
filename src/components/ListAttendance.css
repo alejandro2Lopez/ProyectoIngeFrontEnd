@@ -1,0 +1,17 @@
+.custom-orange-btn {
+  background-color: #9a5629; 
+  color: #fff; 
+  margin-bottom: '20px';
+  float: right;
+  font-size: 1.2rem;
+  width: 200px;
+}
+
+.custom-green-btn {
+  background-color: #5a9a29; 
+  color: #fff; 
+  margin-bottom: '20px';
+  float: right;
+  font-size: 1.2rem;
+  width: 200px;
+}

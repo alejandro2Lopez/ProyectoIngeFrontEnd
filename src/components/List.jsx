@@ -75,7 +75,7 @@ const List = (props) => {
                                 aria-label="Close"
                             />
                         </div>
-                        <div className="modal-body">Desea eliminar la cita la cita en la fecha: {date}  </div>
+                        <div className="modal-body">Desea eliminar la cita en la fecha: {date}  </div>
                         <div className="modal-footer">
                             <button
                                 type="button"
