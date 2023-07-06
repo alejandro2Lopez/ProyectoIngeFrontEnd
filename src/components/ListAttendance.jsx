@@ -16,9 +16,6 @@ const List = (props) => {
     const handleDeleteDate = () => {
         if (ready) {
             fetchMethods.deleteFetch(`citas/citasdeusuario/${log.idperson},${hora},${date}, ${hairCut}`).then(() => {
-
-
-
             })
             onRefresh()
             setReady(false)
