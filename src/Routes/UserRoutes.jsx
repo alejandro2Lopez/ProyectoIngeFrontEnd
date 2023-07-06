@@ -25,7 +25,7 @@ const UserRoutes = () => {
         <Route path="/AdministrarUsuario" element={<ManageUser />} />
         <Route path="/Agenda" element={<ManageDates />} />
         <Route path="/AdministrarCitas" element={<FreeSchedule />} />
-        <Route path="/CambiarContrasennia" element={<ChangePass/>} />
+
       </ Route>
 
 
@@ -34,7 +34,7 @@ const UserRoutes = () => {
         <Route path="/Citas" element={<Dates />} />
         <Route path="/CitasAgendadas" element={<UserDate/>} />
         <Route path="*" element={<Navigate to="/Citas" />} />
-
+        <Route path="/CambiarContrasennia" element={<ChangePass/>} />
       </ Route>
 
     </Routes>
