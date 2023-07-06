@@ -4,7 +4,7 @@ import AdminRouter from "./Routes/ManageRoutes";
 
 import { AuthContext } from "./context/AuthContext";
 import { AuthReducer } from "./reducers/AuthReducer";
-
+//Inicializa el sistema, se cargan los datos del local Storage y demás
 const init = () => {
   return JSON.parse(localStorage.getItem("log")) || { log: false };
 };

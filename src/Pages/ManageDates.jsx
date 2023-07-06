@@ -9,7 +9,7 @@ import WithLoadingList from "../components/WithLoadingList";
 import ListAttendance from "../components/ListAttendance";
 
 import { fetchMethods } from "../components/FetchMethods";
-
+//Maneja las citas del administrador
 export const ManageDates = () => {
     const { log } = useContext(AuthContext);
 

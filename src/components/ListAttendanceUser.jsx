@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { fetchMethods } from "./FetchMethods";
 import { AuthContext } from "../context/AuthContext";
 import './ListAttendance.css';
-
+//Muestra la información de un cliente en especifico 
 const List = (props) => {
     const { log } = useContext(AuthContext);
     const [hora, setHora] = useState(0);
@@ -67,7 +67,7 @@ const List = (props) => {
                         <h5 className="card-title">
                             <div> Citas a las que asistio: {date.conAsistencia}</div>
                             <div> Citas a las que no asistio: {date.sinAsistencia}</div>
-
+                            <div> Numero telefonico: {date.numeroTelefonico}</div>
                         </h5>
 
                     </div>

@@ -10,7 +10,7 @@ import { AuthContext } from "../context/AuthContext";
 import { authTypes } from "../types/authTypes";
 import { NavLink } from 'react-router-dom';
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
-
+//Página para autenticar y registrarse
 export const Login = () => {
     const { dispatch } = useContext(AuthContext)
     const navigate = useNavigate();

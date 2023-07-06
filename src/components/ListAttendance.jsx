@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { fetchMethods } from "./FetchMethods";
 import { AuthContext } from "../context/AuthContext";
 import './ListAttendance.css';
-
+//Muestra las citas asignadas por barbero
 const List = (props) => {
     const { log } = useContext(AuthContext);
     const [hora, setHora] = useState(0);

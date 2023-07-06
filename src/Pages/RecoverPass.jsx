@@ -6,7 +6,7 @@ import { fetchMethods } from "../components/FetchMethods";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 
-
+//Pagina para recuper la contraseña
 export const RecoverPass = () => {
     const { dispatch } = useContext(AuthContext)
     const navigate = useNavigate();

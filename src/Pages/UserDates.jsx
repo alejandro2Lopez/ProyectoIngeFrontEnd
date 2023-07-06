@@ -3,7 +3,7 @@ import { fetchMethods } from "../components/FetchMethods";
 import List from "../components/List";
 import WithLoadingList from "../components/WithLoadingList";
 import { AuthContext } from "../context/AuthContext";
-
+//Muestra las citas de usuario
 export const UserDate = () => {
     const LoadingList = WithLoadingList(List);
     const { log } = useContext(AuthContext);

@@ -6,9 +6,9 @@ import { AuthContext } from "../context/AuthContext";
 import Swal from 'sweetalert2';
 
 import { fetchMethods } from "../components/FetchMethods";
-
+//Pagina asigna un valor de lapso libre para el barbero
 export const FreeSchedule = () => {
-  const { log } = useContext(AuthContext);
+  
 
   const [selectedDay, setSelectedDay] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(false);
@@ -29,13 +29,12 @@ export const FreeSchedule = () => {
         
       fetchMethods.getFetch(`citas/horaCita`).then((res) => {
         setvectorHours(res.data)
-          console.log(vectorHours)
+      
       });
 
       setRefresh(true);
 
-    } console.log('entre1');
-
+    } 
   }, [setvectorHours, refresh, setFullDate, fulldate, hairCutT, setHairCut, barber, setBarber])
 
   const handleStartHourChange = (e) => {
@@ -54,7 +53,7 @@ export const FreeSchedule = () => {
     setBarber(e.target.value);
 
     setRefresh(true);
-    console.log(`Acá al entre ${refresh}`);
+   
 
   }
 
@@ -86,7 +85,7 @@ export const FreeSchedule = () => {
     });
   };
 
-  console.log(vectorHours);
+
   return (
     <>
 

@@ -4,14 +4,14 @@ import { useState, useContext } from 'react';
 import { AuthContext } from "../context/AuthContext";
 import Swal from 'sweetalert2'
 import { fetchMethods } from "../components/FetchMethods";
-
+//Permite al usuario cambiar la contraseña
 export const ChangePass = () => {
     const { log } = useContext(AuthContext);
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-
+//Metodo para cambiar contraseña
     const handleChangePassword = () => {
         if(newPassword != confirmPassword){
             Swal.fire({
@@ -35,9 +35,7 @@ export const ChangePass = () => {
                     confirmButtonColor: "#DD6B55"
     
                 })
-            //    dispatch({ type: authTypes.login, role: res.data.role, userName: res.data.username, email: res.data.email, numberPhone: res.data.numberPhone, idperson: res.data.idperson });
-       
-            } else {
+             } else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -45,8 +43,6 @@ export const ChangePass = () => {
                     confirmButtonColor: "#DD6B55"
 
                 })
-
-
             }
         })
     };

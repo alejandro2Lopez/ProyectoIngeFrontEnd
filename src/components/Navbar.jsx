@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 
 import { AuthContext } from "../context/AuthContext";
 import { authTypes } from "../types/authTypes";
+//Menú lateral
 export const Navbar = () => {
     const navigate = useNavigate();
 

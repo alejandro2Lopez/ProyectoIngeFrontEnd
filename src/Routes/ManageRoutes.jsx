@@ -6,7 +6,7 @@ import { ProtectedRoute } from "../components/ProtectedRouter";
 import { Navigate } from "react-router";
 import UserRoutes from "./UserRoutes";
 import { RecoverPass } from "../Pages/RecoverPass";
-
+//Se administran las rutas
 const AdminRouter = () => {
   const { log } = useContext(AuthContext);
 

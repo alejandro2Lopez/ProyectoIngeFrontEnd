@@ -3,7 +3,7 @@ import { fetchMethods} from "../components/FetchMethods";
 import Select from "react-select";
 import WithLoadingList from "../components/WithLoadingList";
 import ListAttendanceUser from "../components/ListAttendanceUser";
-
+//Muetsra la información del cliente
 export const ManageUser = () => {
 
 

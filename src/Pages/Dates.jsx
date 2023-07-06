@@ -7,6 +7,7 @@ import { AuthContext } from "../context/AuthContext";
 import Swal from 'sweetalert2';
 
 import { fetchMethods } from "../components/FetchMethods";
+//Pagina para mostrar las citas.
 export const Dates = () => {
     const { log } = useContext(AuthContext);
 

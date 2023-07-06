@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { fetchMethods } from "./FetchMethods";
 import { AuthContext } from "../context/AuthContext";
+//Muestra las citas agendadas por usuario.
 const List = (props) => {
     const { log } = useContext(AuthContext);
     const [hora, setHora] = useState(0);
