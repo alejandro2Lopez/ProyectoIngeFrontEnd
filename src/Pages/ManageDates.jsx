@@ -69,7 +69,7 @@ export const ManageDates = () => {
         if (`${selectedDay.year}-${selectedDay.month}-${selectedDay.day}` !== fulldate) {
             if (!selectedDay && !selectedMonth) return fulldate;
             setRefresh(true); //Refresca cuando uno hace un cambi en la fecha
-            console.log(fulldate);
+          
             setFullDate(`${selectedDay.year}-${selectedDay.month}-${selectedDay.day}`);
             return `Mes: ${selectedDay.month}` + `  Day: ${selectedDay.day}`;
         }

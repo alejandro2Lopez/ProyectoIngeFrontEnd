@@ -5,14 +5,15 @@ const List = (props) => {
     const { log } = useContext(AuthContext);
     const [hora, setHora] = useState(0);
     const [date, setDate] = useState(null);
-    const [ready, setReady] = useState(false)
+    const [ready, setReady] = useState(false);
+    const [hairCut, setHairCut] = useState('')
     const { contents } = props;
     if (!contents || contents.length === 0) { return <h1>No Hay citas agendadas</h1> }
 
 
     const handleDeleteDate = () => {
         if (ready) {
-            fetchMethods.deleteFetch(`citas/citasdeusuario/${log.idperson},${hora},${date}`).then(() => {
+            fetchMethods.deleteFetch(`citas/citasdeusuario/${log.idperson},${hora},${date}, ${hairCut}`).then(() => {
 
 
 
@@ -20,10 +21,11 @@ const List = (props) => {
             setReady(false)
         }
     }
-    const getDatatime = (hora, date) => {
+    const getDatatime = (hora, date, hairCut) => {
         setDate(date);
         setHora(hora);
-        setReady(true)
+        setHairCut(hairCut)
+        setReady(true);
     }
     const dates = contents.map((date) => {
 
@@ -41,7 +43,7 @@ const List = (props) => {
                         </p>
 
                         {date.cancelar == 0 ? (<h1></h1>) : (
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10)) }}>Cancelar</button>)}
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10), date.HairCut) }}>Cancelar</button>)}
                     </div>
                 </div>
 

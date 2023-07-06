@@ -7,16 +7,20 @@ const List = (props) => {
     const { log } = useContext(AuthContext);
     const [hora, setHora] = useState(0);
     const [date, setDate] = useState(null);
-    const [ready, setReady] = useState(false)
-    const { contents, onRefresh } = props; 
+    const [ready, setReady] = useState(false);
+    const [hairCut, setHairCut] = useState('');
+    const { contents, onRefresh } = props;
     if (!contents || contents.length === 0) { return <h1>No Hay citas agendadas</h1> }
 
 
     const handleDeleteDate = () => {
         if (ready) {
-            fetchMethods.deleteFetch(`citas/citasdeusuario/${log.idperson},${hora},${date}`).then(() => {
-                onRefresh();
+            fetchMethods.deleteFetch(`citas/citasdeusuario/${log.idperson},${hora},${date}, ${hairCut}`).then(() => {
+
+
+
             })
+            onRefresh()
             setReady(false)
         }
     }
@@ -27,7 +31,7 @@ const List = (props) => {
                 onRefresh();
             })
             setReady(false)
-            
+
         }
     }
     const handleAttendaceTrue = () => {
@@ -39,10 +43,12 @@ const List = (props) => {
         }
     }
 
-    const getDatatime = (hora, date) => {
+    const getDatatime = (hora, date, hairCut) => {
         setDate(date);
         setHora(hora);
-        setReady(true)
+        setHairCut(hairCut);
+        setReady(true);
+
     }
     const dates = contents.map((date) => {
 
@@ -62,16 +68,16 @@ const List = (props) => {
                         </p>
 
                         {date.cancelar == 0 ? (<h1></h1>) : (
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10)) }}>Cancelar</button>)}
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10), date.HairCut) }}>Cancelar</button>)}
 
                         {date.asistenciaSN == 1 ? (
-                            <button type="button" class="custom-green-btn" color='warning' data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10))}}>Asistio</button>
+                            <button type="button" class="custom-green-btn" color='warning' data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10), date.HairCut) }}>Asistio</button>
                         ) : (
-                            <button type="button" class="custom-orange-btn" data-bs-toggle="modal" data-bs-target="#exampleModal3" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10))}}>Ausente</button>
-                        )}  
+                            <button type="button" class="custom-orange-btn" data-bs-toggle="modal" data-bs-target="#exampleModal3" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10), date.HairCut) }}>Ausente</button>
+                        )}
                     </div>
-                    
-                   
+
+
                 </div>
             </>)
     })
