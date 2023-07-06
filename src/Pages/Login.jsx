@@ -174,7 +174,7 @@ export const Login = () => {
                             <p>Dedicado desde el 2015 en el servicio de la barbería, siempre brindando confort y excelencia a nuestros clientes con sus cortes de cabello.</p>
                             <h5>Contacto</h5>
                             <hr></hr>
-                            <p>Correo: AndrésB@gmail.com</p>
+                            <p>Correo: AndresB@gmail.com</p>
                             <p>Celular: 83118944</p>
                             <h5>Ubicación</h5>
                             <hr></hr>

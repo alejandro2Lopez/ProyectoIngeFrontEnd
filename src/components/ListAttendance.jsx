@@ -10,7 +10,23 @@ const List = (props) => {
     const [ready, setReady] = useState(false);
     const [hairCut, setHairCut] = useState('');
     const { contents, onRefresh } = props;
-    if (!contents || contents.length === 0) { return <h1>No Hay citas agendadas</h1> }
+    if (!contents || contents.length === 0) {
+        return (
+            <>
+                <div className="d-flex justify-content-center align-items-center">
+                    <h1>No hay citas programadas</h1>
+                </div>
+                <div className="d-flex justify-content-center align-items-center">
+                    <img
+                        src={require("../assets/Barber.png")}
+                        alt="avatar"
+                        className="rounded-circle img-fluid"
+                        style={{ width: 200 }}
+                    />
+
+                </div>
+            </>)
+    }
 
 
     const handleDeleteDate = () => {

@@ -8,8 +8,24 @@ const List = (props) => {
     const [hora, setHora] = useState(0);
     const [date, setDate] = useState(null);
     const [ready, setReady] = useState(false)
-    const { contents, onRefresh } = props; 
-    if (!contents || contents.length === 0) { return <h1>Sin datos del cliente seleccionado</h1> }
+    const { contents, onRefresh } = props;
+    if (!contents || contents.length === 0) {
+        return (
+            <>
+                <div className="d-flex justify-content-center align-items-center">
+                    <h1>Sin datos del cliente seleccionado</h1>
+                </div>
+                <div className="d-flex justify-content-center align-items-center">
+                    <img
+                        src={require("../assets/Barber.png")}
+                        alt="avatar"
+                        className="rounded-circle img-fluid"
+                        style={{ width: 200 }}
+                    />
+
+                </div>
+            </>)
+    }
 
 
     const handleDeleteDate = () => {
@@ -27,7 +43,7 @@ const List = (props) => {
                 onRefresh();
             })
             setReady(false)
-            
+
         }
     }
     const handleAttendaceTrue = () => {
@@ -39,19 +55,14 @@ const List = (props) => {
         }
     }
 
-    const getDatatime = (hora, date) => {
-        setDate(date);
-        setHora(hora);
-        setReady(true)
-    }
     const dates = contents.map((date) => {
 
         return (
             <>
                 <div className="card" >
-                    <div className="card-header" style={{display: 'flex',justifyContent: 'center', alignItems: 'center'}}>Asistencia</div>
+                    <div className="card-header" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Asistencia</div>
                     <div className="card-body">
-                        <p className="card-title"> Cliente: {date.email} </p>
+                        <p style={{fontSize: "25px"}}> Cliente: {date.email} </p>
                         <hr></hr>
                         <h5 className="card-title">
                             <div> Citas a las que asistio: {date.conAsistencia}</div>
@@ -60,8 +71,8 @@ const List = (props) => {
                         </h5>
 
                     </div>
-                    
-                   
+
+
                 </div>
             </>)
     })

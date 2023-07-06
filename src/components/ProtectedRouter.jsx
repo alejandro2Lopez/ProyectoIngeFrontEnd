@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-
+//Metodo para controlar las rutas de parte del frontEnd
 export const ProtectedRoute = ({
   isAllowed,
   redirectTo = "" ,
