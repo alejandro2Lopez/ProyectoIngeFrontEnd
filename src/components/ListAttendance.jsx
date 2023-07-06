@@ -65,7 +65,7 @@ const List = (props) => {
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10)) }}>Cancelar</button>)}
 
                         {date.asistenciaSN == 1 ? (
-                            <button type="button" class="custom-green-btn" color='warning' data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10))}}>Asistio</button>
+                            <button type="button" class="custom-green-btn" color='warning' data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10))}}>Asistió</button>
                         ) : (
                             <button type="button" class="custom-orange-btn" data-bs-toggle="modal" data-bs-target="#exampleModal3" onClick={() => { getDatatime(date.idHoraCita, date.fecha.toString().substring(0, 10))}}>Ausente</button>
                         )}  
